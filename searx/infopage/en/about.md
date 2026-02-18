@@ -10,13 +10,13 @@ To compromise your privacy on SearXJP, an adversary would need to simultaneously
 
 We operate a strict **Two-Node Policy**:
 
-### 1. The Entry Node (Tokyo, Japan)
+### 1. 🇯🇵 The Entry Node (Tokyo, Japan)
 This is the server you connect to. It acts strictly as a **TCP Blind Relay**.
 *   **What it knows:** It knows your IP address.
 *   **What it DOES NOT know:** It **cannot** see your search query.
 *   **How it works:** This server forwards encrypted SSL packets directly to our backend. It does not hold the SSL keys, meaning it is mathematically impossible for this server to decrypt or read your traffic.
 
-### 2. The Processing Node (Undisclosed Location)
+### 2. 🌏 The Processing Node (Undisclosed Location)
 This server receives the traffic from the Japan Entry Node via an encrypted private tunnel.
 *   **What it knows:** It decrypts the traffic and knows what you are searching for.
 *   **What it DOES NOT know:** It **cannot** see your IP address. It only sees the internal IP of the Japan Entry Node.

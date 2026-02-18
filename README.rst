@@ -1,62 +1,39 @@
-.. SPDX-License-Identifier: AGPL-3.0-or-later
+# SearXJP
 
-.. _metasearch engine: https://en.wikipedia.org/wiki/Metasearch_engine
-.. _Installation guide: https://docs.searxng.org/admin/installation.html
-.. _Configuration guide: https://docs.searxng.org/admin/settings/index.html
-.. _CONTRIBUTING: https://github.com/searxng/searxng/blob/master/CONTRIBUTING.rst
-.. _LICENSE: https://github.com/searxng/searxng/blob/master/LICENSE
+![SearXNG](https://raw.githubusercontent.com/searxng/searxng/master/client/simple/src/brand/searxng.svg)
 
-.. figure:: https://raw.githubusercontent.com/searxng/searxng/master/client/simple/src/brand/searxng.svg
-   :target: https://searxng.org
-   :alt: SearXNG
-   :width: 512px
+**SearXJP** is a customized fork of [SearXNG](https://github.com/searxng/searxng), optimized for the Asian region (Japan/China/Korea) and branded for the SearXJP privacy instance.
 
+## ⚠️ Fork Scope & Transparency
 
-SearXNG is a `metasearch engine`_. Users are neither tracked nor profiled.
+This repository is a **Strict Static Asset Customization**.
 
-.. image:: https://img.shields.io/badge/organization-3050ff?style=flat-square&logo=searxng&logoColor=fff&cacheSeconds=86400
-   :target: https://github.com/searxng
-   :alt: Organization
+We believe in the security and stability of the core SearXNG project. Therefore, to maintain trust and ensure upstream security updates can be applied immediately, **we do not modify the core Python application logic.**
 
-.. image:: https://img.shields.io/badge/documentation-3050ff?style=flat-square&logo=readthedocs&logoColor=fff&cacheSeconds=86400
-   :target: https://docs.searxng.org
-   :alt: Documentation
+### What has been changed in this fork?
 
-.. image:: https://img.shields.io/github/license/searxng/searxng?style=flat-square&label=license&color=3050ff&cacheSeconds=86400
-   :target: https://github.com/searxng/searxng/blob/master/LICENSE
-   :alt: License
+1.  **Static Assets:**
+    *   Logos, Favicons, and touch icons have been replaced with SearXJP branding.
+    *   CSS styles (Theme colors) customized for the instance identity.
+2.  **Documentation & Localization:**
+    *   `about.md` and `search_syntax.md` have been rewritten to reflect our "Split-Knowledge Architecture" and include translations for Japanese, Korean, Chinese, Vietnamese, Thai, and Indonesian.
+3.  **Default Configuration:**
+    *   `settings.yml` defaults have been tuned for Asian search engines and privacy settings suitable for our infrastructure.
 
-.. image:: https://img.shields.io/github/commit-activity/y/searxng/searxng/master?style=flat-square&label=commits&color=3050ff&cacheSeconds=3600
-   :target: https://github.com/searxng/searxng/commits/master/
-   :alt: Commits
+### What has NOT been changed?
 
-.. image:: https://img.shields.io/weblate/progress/searxng?server=https%3A%2F%2Ftranslate.codeberg.org&style=flat-square&label=translated&color=3050ff&cacheSeconds=86400
-   :target: https://translate.codeberg.org/projects/searxng/
-   :alt: Translated
+*   **NO Logic Changes:** The core metasearch logic, result aggregation, and scrubbing mechanisms are 100% identical to upstream SearXNG.
+*   **NO JavaScript Tracking:** We have **not** added any external JavaScript, analytics, pixels, or tracking scripts. The client-side code remains pure.
+*   **NO Backdoors:** Authentication and proxy handling remain untouched.
 
-Setup
-=====
+## Credits & Upstream
 
-To install SearXNG, see `Installation guide`_.
+This project is powered by **SearXNG**. We are grateful to the contributors of the original project for building the most privacy-respecting metasearch engine in the world.
 
-To fine-tune SearXNG, see `Configuration guide`_.
+*   **Original Project:** [SearXNG on GitHub](https://github.com/searxng/searxng)
+*   **Documentation:** [docs.searxng.org](https://docs.searxng.org)
 
-Further information on *how-to* can be found `here <https://docs.searxng.org/admin/index.html>`_.
+## License
 
-Connect
-=======
-
-If you have questions or want to connect with others in the community:
-
-- `#searxng:matrix.org <https://matrix.to/#/#searxng:matrix.org>`_
-
-Contributing
-============
-
-See CONTRIBUTING_ for more details.
-
-License
-=======
-
-This project is licensed under the GNU Affero General Public License (AGPL-3.0).
-See LICENSE_ for more details.
+This project is licensed under the **GNU Affero General Public License (AGPL-3.0)**.
+See [LICENSE](LICENSE) for more details.
