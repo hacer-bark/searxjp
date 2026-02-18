@@ -1,7 +1,5 @@
 # SearXJP
 
-![SearXNG](https://raw.githubusercontent.com/searxng/searxng/master/client/simple/src/brand/searxng.svg)
-
 **SearXJP** is a customized fork of [SearXNG](https://github.com/searxng/searxng), optimized for the Asian region (Japan/China/Korea) and branded for the SearXJP privacy instance.
 
 ## ⚠️ Fork Scope & Transparency
