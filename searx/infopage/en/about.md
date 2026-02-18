@@ -1,79 +1,59 @@
-# About SearXNG
+# About SearXJP
 
-SearXNG is a [metasearch engine], aggregating the results of other
-{{link('search engines', 'preferences')}} while not storing information about
-its users.
+SearXJP is a privacy-hardened, Asia-optimized instance of the [SearXNG] metasearch engine.
 
-The SearXNG project is driven by an open community. Come join us on Matrix if
-you have questions or just want to chat about SearXNG at [#searxng:matrix.org]
+Unlike standard public instances, SearXJP is built upon a **Split-Knowledge Architecture**. We prioritize two things: low-latency access for users in Japan/Asia, and a physical separation between the server that knows *who* you are and the server that knows *what* you are searching for.
 
-Make SearXNG better:
+## Our Architecture: The "Split-Knowledge" Model
 
-- You can improve SearXNG translations at [Weblate], or...
-- Track development, send contributions, and report issues at [SearXNG sources].
-- To get further information, visit SearXNG's project documentation at [SearXNG
-  docs].
+To compromise your privacy on SearXJP, an adversary would need to simultaneously breach two different servers, in two different legal jurisdictions, owned by different providers.
 
-## Why use it?
+We operate a strict **Two-Node Policy**:
 
-- SearXNG may not offer you as personalized results as Google, but it doesn't
-  generate a profile about you.
-- SearXNG doesn't care about what you search for, never shares anything with a
-  third-party, and can't be used to compromise you.
-- SearXNG is free software; the code is 100% open, and everyone is welcome to
-  make it better.
+### 1. The Entry Node (Tokyo, Japan)
+This is the server you connect to. It acts strictly as a **TCP Blind Relay**.
+*   **What it knows:** It knows your IP address.
+*   **What it DOES NOT know:** It **cannot** see your search query.
+*   **How it works:** This server forwards encrypted SSL packets directly to our backend. It does not hold the SSL keys, meaning it is mathematically impossible for this server to decrypt or read your traffic.
 
-If you do care about privacy, want to be a conscious user, or otherwise believe
-in digital freedom, make SearXNG your default search engine or run it on your
-own server!
+### 2. The Processing Node (Undisclosed Location)
+This server receives the traffic from the Japan Entry Node via an encrypted private tunnel.
+*   **What it knows:** It decrypts the traffic and knows what you are searching for.
+*   **What it DOES NOT know:** It **cannot** see your IP address. It only sees the internal IP of the Japan Entry Node.
+*   **How it works:** This node handles the computation, aggregates results from Google/Bing/DuckDuckGo, and sanitizes the data before sending it back through the tunnel.
 
-## How do I set it as the default search engine?
+## Network Performance & China Accessibility
 
-SearXNG supports [OpenSearch].  For more information on changing your default
-search engine, see your browser's documentation:
+Our Entry Node in Tokyo utilizes a premium BGP network mix, including **GSL, PCCW, COGENT, EIE, and JPNAP**.
 
-- [Firefox]
-- [Microsoft Edge] - Behind the link, you will also find some useful instructions
-  for Chrome and Safari.
-- [Chromium]-based browsers only add websites that the user navigates to without
-  a path.
+**For users in Mainland China:**
+While we have not officially tested accessibility through the Great Firewall and cannot guarantee availability, our network infrastructure is technically optimized for cross-border connectivity. The inclusion of **PCCW** and other premium Asian routes theoretically offers superior latency and stability compared to connecting to US or European instances.
 
-When adding a search engine, there must be no duplicates with the same name.  If
-you encounter a problem where you cannot add the search engine, you can either:
+## Transparency: Logging & Data Retention
 
-- Remove the duplicate (default name: SearXNG) or
-- Contact the owner to give the instance a different name from the default.
+We believe in radical transparency regarding what we log and, more importantly, what we *cannot* log.
 
-## How does it work?
+### Standard Internet Connections (Clearweb)
+*   **On the Japan Entry Node:** We maintain a rolling **15-minute TCP connection log**.
+    *   *Why?* This is strictly for DDoS protection and Rate Limiting. If an IP floods us with connections, the firewall blocks it.
+    *   *Privacy:* Because this node only processes encrypted TCP streams, **it is impossible for these logs to contain your search queries.**
+*   **On the Processing Node:** **No Logs.**
+    *   We do not log IP addresses (we don't see them).
+    *   We do not log search queries.
+    *   Rate limiting is applied based on the *route* (e.g., "Global Traffic"), not by user IP.
 
-SearXNG is a fork of the well-known [searx] [metasearch engine] which was
-inspired by the [Seeks project].  It provides basic privacy by mixing your
-queries with searches on other platforms without storing search data.  SearXNG
-can be added to your browser's search bar; moreover, it can be set as the
-default search engine.
+### Tor & I2P Connections
+*   **Strict No-Logs Policy:** Traffic coming via Tor or I2P bypasses the standard TCP rate limiter logs entirely.
+*   We do not track entry timing, correlation data, or connection metadata for anonymity networks.
 
-The {{link('stats page', 'stats')}} contains some useful anonymous usage
-statistics about the engines used.
+## How to set as default
 
-## How can I make it my own?
+SearXJP supports [OpenSearch]. You can add it to your browser easily:
 
-SearXNG appreciates your concern regarding logs, so take the code from the
-[SearXNG sources] and run it yourself!
+- [Firefox] - Right-click the address bar and select "Add SearXJP".
+- [Chromium]-based browsers (Chrome, Brave, Edge) - Go to Settings > Search Engine > Manage Search Engines and add SearXJP manually if it does not appear automatically.
 
-Add your instance to this [list of public
-instances]({{get_setting('brand.public_instances')}}) to help other people
-reclaim their privacy and make the internet freer.  The more decentralized the
-internet is, the more freedom we have!
-
-
-[SearXNG sources]: {{GIT_URL}}
-[#searxng:matrix.org]: https://matrix.to/#/#searxng:matrix.org
-[SearXNG docs]: {{get_setting('brand.docs_url')}}
-[searx]: https://github.com/searx/searx
-[metasearch engine]: https://en.wikipedia.org/wiki/Metasearch_engine
-[Weblate]: https://translate.codeberg.org/projects/searxng/
-[Seeks project]: https://beniz.github.io/seeks/
+[SearXNG]: https://github.com/searxng/searxng
 [OpenSearch]: https://github.com/dewitt/opensearch/blob/master/opensearch-1-1-draft-6.md
 [Firefox]: https://support.mozilla.org/en-US/kb/add-or-remove-search-engine-firefox
-[Microsoft Edge]: https://support.microsoft.com/en-us/help/4028574/microsoft-edge-change-the-default-search-engine
 [Chromium]: https://www.chromium.org/tab-to-search
