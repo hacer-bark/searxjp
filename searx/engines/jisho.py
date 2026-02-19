@@ -60,9 +60,9 @@ def response(resp):
         # For results, we'll return the URL, all alternative forms (as title),
         # and all definitions (as description) truncated to 300 characters.
         content = " ".join(f"{engdef}." for _, engdef, _ in definitions)
-        results.append(
-            {'url': result_url, 'title': ", ".join(alt_forms), 'content': content[:300] + (content[300:] and '...')}
-        )
+        # results.append(
+        #     {'url': result_url, 'title': ", ".join(alt_forms), 'content': content[:300] + (content[300:] and '...')}
+        # )
 
         # Like Wordnik, we'll return the first result in an infobox too.
         if first_result:

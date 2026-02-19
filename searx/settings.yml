@@ -726,6 +726,7 @@ engines:
   - name: google
     engine: google
     shortcut: go
+    disabled: true
 
   - name: google images
     engine: google_images
@@ -1487,7 +1488,6 @@ engines:
     engine: startpage
     shortcut: sp
     startpage_categ: web
-    disabled: true
     categories: [general, web]
     additional_tests:
       rosebud: *test_rosebud
