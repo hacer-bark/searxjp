@@ -6,9 +6,6 @@ from setuptools import setup, find_packages
 from searx.version import VERSION_TAG, GIT_URL
 from searx import get_setting
 
-with open('README.rst', encoding='utf-8') as f:
-    long_description = f.read()
-
 with open('requirements.txt') as f:
     requirements = [l.strip() for l in f.readlines()]
 
